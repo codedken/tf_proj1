@@ -102,13 +102,13 @@ resource "aws_route_table_association" "rta" {
 # Create a network interface for the subnet created in step 4
 resource "aws_network_interface" "test" {
   security_groups = [aws_security_group.allow-web.id]
-  private_ips     = ["10.0.1.50"]
+  private_ips     = ["10.0.0.50"]
   subnet_id       = aws_subnet.subnet.id
 }
 
 # Create an elastic IP for step 7
 resource "aws_eip" "one" {
-  associate_with_private_ip = "10.0.1.50"
+  associate_with_private_ip = "10.0.0.50"
   domain                    = "vpc"
   network_interface         = aws_network_interface.test.id
   depends_on                = [aws_security_group.allow-web, aws_instance.web]
