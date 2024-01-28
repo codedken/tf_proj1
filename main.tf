@@ -111,7 +111,7 @@ resource "aws_eip" "one" {
   associate_with_private_ip = "10.0.1.50"
   domain                    = "vpc"
   network_interface         = aws_network_interface.test.id
-  depends_on                = [aws_security_group.allow-web]
+  depends_on                = [aws_security_group.allow-web, aws_instance.web]
 }
 
 # Create an instance with apache enabled and installed
